@@ -6,24 +6,15 @@ import React from "react";
 
 const serverRender = () =>
   axios.get(`${config.serverUrl}/api/contests`).then((resp) => {
-<<<<<<< HEAD
     return {
       initialMarkup: ReactDOMServer.renderToString(
         <App initialContests={resp.data.contests} />
       ),
-      initialData: resp.data
-    }
-    
-    
-    
-=======
-    return ReactDOMServer.renderToString(
-      <App initialContests={resp.data.contests} />
-    );
->>>>>>> master
+      initialData: resp.data,
+    };
   });
 // renderToString not rendering desired output
 export default serverRender;
 
-//Note-to-self: figure out why ReactDOMServer not rendering React HTML markup 
+//Note-to-self: figure out why ReactDOMServer not rendering React HTML markup
 // test with curl http://localhost:8080

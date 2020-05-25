@@ -19,17 +19,11 @@ server.use(
 //renders node application/pages/data etc
 server.get("/", (req, res) => {
   serverRender()
-<<<<<<< HEAD
-    .then(({initialMarkup, initialData}) =>{
+    .then(({ initialMarkup, initialData }) => {
       res.render("index", {
         initialMarkup,
-        initialData
-=======
-    .then((content) =>{
-      res.render("index", {
-        content
->>>>>>> master
-      })
+        initialData,
+      });
     })
     .catch();
 });

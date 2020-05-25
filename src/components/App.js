@@ -1,16 +1,11 @@
 import React from "react";
 import Header from "./Header";
-<<<<<<< HEAD
 import ContestList from './ContestList'
 
 const pushState =(obj, url) =>{
   window.history.pushState(obj, "", url)
 }
 
-=======
-import ContestPreview from "./ContestPreview";
-import axios from "axios";
->>>>>>> master
 
 class App extends React.Component {
   constructor(props) {
@@ -23,18 +18,7 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log("did mount");
-<<<<<<< HEAD
     
-=======
-    axios
-      .get("/api/contests")
-      .then((resp) => {
-        this.setState({
-          contests: resp.data.contests,
-        });
-      })
-      .catch(console.error);
->>>>>>> master
   }
 
   componentWillUnmount() {
@@ -42,7 +26,6 @@ class App extends React.Component {
     //cleantimers, listeners
   }
 
-<<<<<<< HEAD
   fetchContest =(contestId)=>{
     pushState(
       {currentContestId : contestId},
@@ -50,23 +33,13 @@ class App extends React.Component {
     )
   }
 
-=======
->>>>>>> master
   render() {
     return (
       <div>
         <Header message={this.state.pageHeader} />
-<<<<<<< HEAD
         <ContestList 
         onContestClick={this.fetchContest}
         contests={this.state.contests}/>
-=======
-        <div>
-          {this.state.contests.map((contest) => (
-            <ContestPreview key={contest.id} {...contest} />
-          ))}
-        </div>
->>>>>>> master
       </div>
     );
   }

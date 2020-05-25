@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { Component } from "react";
 import propTypes from "prop-types";
 
@@ -23,15 +23,9 @@ ContestPreview.propTypes = {
   contestName: propTypes.string.isRequired,
   onClick: propTypes.func.isRequired,
 };
-=======
-import React from "react";
 
-const ContestPreview = (contest) => (
-  <div className="ContestPreview">
-    <div className="category-name">{contest.categoryName}</div>
-    <div className="contest-name">{contest.contestName}</div>
-  </div>
-);
->>>>>>> master
+
+
+
 
 export default ContestPreview;
