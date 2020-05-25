@@ -3,4 +3,9 @@ import ReactDOM from "react-dom";
 
 import App from "./components/App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+<<<<<<< HEAD
+
+ReactDOM.render(<App initialContests={window.initialData.contests}/>, document.getElementById("root"));
+=======
+ReactDOM.render(<App initialContests={[]}/>, document.getElementById("root"));
+>>>>>>> master
