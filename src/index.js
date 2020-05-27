@@ -5,4 +5,4 @@ import App from "./components/App";
 
 
 
-ReactDOM.hydrate(<App initialContests={window.initialData.contests}/>, document.getElementById("root"));
+ReactDOM.hydrate(<App initialData={window.initialData}/>, document.getElementById("root"));

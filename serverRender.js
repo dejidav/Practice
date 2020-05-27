@@ -4,13 +4,37 @@ import ReactDOMServer from "react-dom/server";
 import App from "./src/components/App";
 import React from "react";
 
-const serverRender = () =>
-  axios.get(`${config.serverUrl}/api/contests`).then((resp) => {
+
+const getAPIUrl = contestId =>{
+  if(contestId){
+    return `${config.serverUrl}/api/contests/${contestId}`
+  }
+  return `${config.serverUrl}/api/contests`
+}
+
+const getInitialData = (contestId, apiData) => {
+  if(contestId){
+    return {
+      currentContestId: apiData.id,
+      contests: {
+        [apiData.id]: apiData
+      }
+    }
+  }
+  return {
+    contests: apiData.contests
+  }
+}
+
+
+const serverRender = (contestId) =>
+  axios.get(getAPIUrl(contestId)).then((resp) => {
+    const initialData = getInitialData(contestId, resp.data)
     return {
       initialMarkup: ReactDOMServer.renderToString(
-        <App initialContests={resp.data.contests} />
+        <App initialData={initialData} />
       ),
-      initialData: resp.data,
+      initialData
     };
   });
 // renderToString not rendering desired output

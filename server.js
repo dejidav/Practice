@@ -17,8 +17,8 @@ server.use(
 );
 
 //renders node application/pages/data etc
-server.get("/", (req, res) => {
-  serverRender()
+server.get(["/", '/contests/:contestId'], (req, res) => {
+  serverRender(req.params.contestId)
     .then(({ initialMarkup, initialData }) => {
       res.render("index", {
         initialMarkup,
