@@ -7,7 +7,13 @@
     font-weight: bold;
     background-color: #eee; }
   .ContestPreview .contest-name {
-    padding: 0.5em; }
+    padding: 0.5em;
+    font-weight: bold;
+    font-size: large; }
 
 .link {
   cursor: pointer; }
+
+.home-link {
+  margin: 1em;
+  color: 238; }

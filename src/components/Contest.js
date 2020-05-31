@@ -1,18 +1,23 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 import propTypes from "prop-types";
 
 class Contest extends Component {
-    render(){
-        return(
-            <div className="contest">
-                {this.props.description}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <div className="contest-name">{this.props.contestName}</div>
+        <div className="contest">{this.props.description}</div>
+        <div className="home-link link"
+          onClick={this.props.contestListClick}
+        > Contest List </div>
+      </div>
+    );
+  }
 }
 
 Contest.propTypes = {
-    description: propTypes.string.isRequired
-}
+  description: propTypes.string.isRequired,
+  contestListClick: propTypes.func.isRequired,
+};
 
 export default Contest;

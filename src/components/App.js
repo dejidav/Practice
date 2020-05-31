@@ -9,6 +9,10 @@ const pushState = (obj, url) => {
   window.history.pushState(obj, "", url);
 };
 
+const onPopState = (handler) => {
+  window.onpopstate = handler;
+};
+
 class App extends React.Component {
   static propTypes = {
     initialData: propTypes.object.isRequired,
@@ -16,11 +20,15 @@ class App extends React.Component {
   state = this.props.initialData;
 
   componentDidMount() {
-    console.log("did mount");
+    onPopState((event) => {
+      this.setState({
+        currentContestId: (event.state || {}).currentContestId,
+      });
+    });
   }
 
   componentWillUnmount() {
-    console.log("will unmount ");
+    onPopState(null)
     //cleantimers, listeners
   }
 
@@ -34,6 +42,17 @@ class App extends React.Component {
           ...this.state.contests,
           [contest.id]: contest,
         },
+      });
+    });
+  };
+
+  fetchContestList = () => {
+    pushState({ currentContestId: null }, `/`);
+
+    api.fetchContestList().then((contests) => {
+      this.setState({
+        currentContestId: null,
+        contests,
       });
     });
   };
@@ -53,7 +72,12 @@ class App extends React.Component {
 
   currentcontent() {
     if (this.state.currentContestId) {
-      return <Contest {...this.currentContest()} />;
+      return (
+        <Contest
+          contestListClick={this.fetchContestList}
+          {...this.currentContest()}
+        />
+      );
     }
 
     return (
