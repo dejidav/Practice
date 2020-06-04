@@ -8,6 +8,7 @@ import serverRender from "./serverRender";
 
 const server = express();
 server.set("view engine", "ejs"); //set template engine
+server.use(express.json());
 //use sass style
 server.use(
   sassMiddleware({
@@ -17,7 +18,7 @@ server.use(
 );
 
 //renders node application/pages/data etc
-server.get(["/", '/contests/:contestId'], (req, res) => {
+server.get(["/", "/contests/:contestId"], (req, res) => {
   serverRender(req.params.contestId)
     .then(({ initialMarkup, initialData }) => {
       res.render("index", {
@@ -25,7 +26,10 @@ server.get(["/", '/contests/:contestId'], (req, res) => {
         initialData,
       });
     })
-    .catch();
+    .catch((err) => {
+      console.error(err);
+      res.status(404).send("bad request");
+    });
 });
 
 server.use("/api", apiRouter); // renders api requests

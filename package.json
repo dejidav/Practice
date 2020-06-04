@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd",
-    "loadtestdata": "babel-node loadTestData.js"
+    "loadtestdata": "babel-node loadTestData.js",
+    "updateData": "babel-node updateTestData.js"
   },
   "repository": {
     "type": "git",

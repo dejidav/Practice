@@ -15,9 +15,9 @@ const getAPIUrl = contestId =>{
 const getInitialData = (contestId, apiData) => {
   if(contestId){
     return {
-      currentContestId: apiData.id,
+      currentContestId: apiData._id,
       contests: {
-        [apiData.id]: apiData
+        [apiData._id]: apiData
       }
     }
   }
@@ -36,7 +36,7 @@ const serverRender = (contestId) =>
       ),
       initialData
     };
-  });
+  }).catch(console.error);
 // renderToString not rendering desired output
 export default serverRender;
 
